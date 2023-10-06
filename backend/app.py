@@ -4,7 +4,7 @@ from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
-CORS(app,resources={r"/*": {"origins": "https://botpredict.vercel.app/"}})
+CORS(app,resources={r"/*": {"origins": "https://botpredict.vercel.app"}})
 
 @app.route('/predict', methods=['POST'])
 def predict():
