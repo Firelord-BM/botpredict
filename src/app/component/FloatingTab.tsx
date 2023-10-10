@@ -13,7 +13,7 @@ const FloatingTab = ({onClose, onSubmit}:any) => {
     onClose()
   }
   return (
-    <div className='fixed top-1/2 w-[60%] left-1/2 transform -translate-y-1/2 -translate-x-1/2 bg-gray-800 z-10 border border-gray-400 p-4 rounded shadow-lg'>
+    <div className='fixed top-1/2 w-[60%] left-1/2 transform -translate-y-1/2 -translate-x-1/2 bg-gray-700 z-10 border border-gray-400 p-4 rounded shadow-lg'>
       <div className='flex my-auto justify-between'><h1 className='text-white pb-4'>Add Information</h1>
       <button className='pb-4' onClick={onClose}>
             <FiX size={20} className="bg-gray-400 rounded-sm text-red-500"/>
