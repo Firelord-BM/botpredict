@@ -11,8 +11,7 @@ import TypingAnimation from "./component/TypingAnimation";
 
 const Home: React.FC = () => {
   const [messages, setMessages] = useState<MessageProps[]>([
-    { text: "Hello bot", isUser: true },
-    { text: "Hi User, ask a question", isUser: false },
+   
   ]);
 
   const [userMessage, setUserMessage] = useState<string>("");
@@ -107,11 +106,11 @@ const Home: React.FC = () => {
   };
 
   return (
-    <main className="h-screen bg-gray-900 flex flex-col justify-between">
+    <main className="h-screen bg-gray-900 px-4 flex flex-col justify-between">
       <div>
         <MenuBar onAddInformationClick={handleAddInformation} />
         {addedInformation && (
-          <div className="font-bold text-center text-white text-2xl  p-4">
+          <div className="font-bold text-center text-white text-2xl p-4">
             {addedInformation}
           </div>
         )}
@@ -125,45 +124,39 @@ const Home: React.FC = () => {
         </div>
       </div>
      
-      <div className="">
-        <div className="flex-1 mx-auto max-w-[47%] overflow-y-auto">
-          <ChatBox messages={messages} />
-          {loading && <div>
-            <div className="bg-gray-800 rounded-md p-4 max-w-sm"><TypingAnimation/></div>
-            </div>}
-        </div>
+      <div className="flex-1 mx-auto max-w-lg scrollbar scrollbar-none  overflow-y-auto">
+        <ChatBox messages={messages} />
+        {loading && (
+          <div className="bg-gray-800 rounded-md p-4 max-w-[300px]">
+            <TypingAnimation />
+          </div>
+        )}
+      </div>
 
-        <form
-          className="flex justify-center items-end mt-4 pb-4"
-          onSubmit={handleSubmit}
-        >
-          <input
-            type="text"
-            className="w-full max-w-xl shadow-xl outline-none px-4 py-2 border border-gray-300 rounded"
-            placeholder="Type a message..."
-            value={userMessage}
-            onChange={(event) => setUserMessage(event.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-<div className="-translate-x-20 my-auto"><div>
-{disabledButton ? (
-            <button
-              type="submit"
-              className=" rounded-md px-4 py-2 ml-2"
-            >
-              <BiSolidSend style={inactiveIconStyle} className="" size={23} />
+      <form
+        className="flex w-1/2 mx-auto justify-center items-center px-4 mt-4 pb-4"
+        onSubmit={handleSubmit}
+      >
+        <input
+          type="text"
+          className="flex-1 shadow-xl outline-none px-4 py-2 border text-black border-gray-300 rounded"
+          placeholder="Type a message..."
+          value={userMessage}
+          onChange={(event) => setUserMessage(event.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <div className="-translate-x-16 ml-2">
+          {disabledButton ? (
+            <button type="submit" className="rounded-md px-4 py-2">
+              <BiSolidSend className="text-gray-600" size={23} />
             </button>
           ) : (
-            <button
-              type="submit"
-              className=" rounded-md bg-green-400 px-4 py-1 ml-2"
-            >
-              <BiSolidSend style={activeIconStyle} className="" size={23} />
+            <button type="submit" className="rounded-md bg-green-400 px-2 py-1">
+              <BiSolidSend className="text-black" size={23} />
             </button>
-          )}</div></div>
-          
-        </form>
-      </div>
+          )}
+        </div>
+      </form>
     </main>
   );
 };
